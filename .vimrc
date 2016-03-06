@@ -2,6 +2,9 @@ let mapleader=","
 
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader><Space> :NERDTreeToggle<CR>
+nnoremap <leader>ta :tabnew<CR>
+
+command! Q q
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -91,6 +94,7 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set tabstop=4
+set shiftwidth=4
 set wildmenu
 set showmatch
 set hidden
@@ -102,17 +106,20 @@ set cursorline
 set splitright
 set number
 set smartindent
-set shiftwidth=4
 set expandtab
+set autoread
+set encoding=utf-8
+set list
+set cursorline
+set autoindent
+set smarttab
+set ignorecase
+set nobackup
+set listchars=tab:»·,trail:·
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
-
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd vimenter * NERDTree
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=hmtlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 "Airline
 let g:airline_powerline_fonts = 1
@@ -124,3 +131,14 @@ let g:airline_detect_modified=1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
+let g:airline_section_y = ''
+let g:airline_section_x = ''
+
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+
+let delimitMate_expand_cr=1
+let delimitMate_expand_space=1
+
+let g:closetag_filenames = "*.html,*.xhtml,*.xml"
+
